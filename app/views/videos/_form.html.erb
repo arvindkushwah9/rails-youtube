@@ -1,0 +1,51 @@
+<%= form_with(model: video, local: true) do |form| %>
+  <% if video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(video.errors.count, "error") %> prohibited this video from being saved:</h2>
+
+      <ul>
+      <% video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div class="field">
+    <%= form.label :title, "Send to:" %>
+    <%= form.check_box :youtube if current_user.is_youtube_authorized? %> Youtube
+    <%= link_to "Authenticate Google Account", "/users/auth/google_oauth2" unless current_user.is_youtube_authorized? %>
+    <br>
+    <%= form.check_box :facebook if current_user.is_facebook_authorized? %> Facebook
+    <%= link_to "Authenticate Facebook Account", "/users/auth/facebook" unless current_user.is_facebook_authorized? %>
+    <br>
+    <%= form.check_box :instagram if current_user.is_instagram_authorized? %> Instagram
+    <%= link_to "Authenticate Instagram Account", "/users/auth/instagram" unless current_user.is_instagram_authorized? %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :video_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :video_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.number_field :category_id, id: :video_category_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video %>
+    <%= form.file_field :video, id: :video_video %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

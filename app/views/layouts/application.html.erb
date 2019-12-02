@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsVideoUpload</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  	<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+	    <div class="container">
+	      <a class="navbar-brand" href="/" style="text-transform: uppercase;"> RailsVideoUpload</a>
+	      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button> -->
+	      <div class="collapse navbar-collapse" id="navbarResponsive">
+
+	        <ul class="navbar-nav ml-auto">
+
+	          <li class="nav-item <%= request.path == "/" ? 'active' : '' %>">
+	            <a class="nav-link" href="/">Home
+	              <!-- <span class="sr-only">(current)</span> -->
+	            </a>
+	          </li>
+
+	          <li class="nav-item <%= request.path != "/" && params[:controller] == "listings" ? 'active' : '' %>">
+	            <a class="nav-link" href="/videos">Videos</a>
+	          </li>
+
+	         
+	          <% if user_signed_in? %>
+	          <%#  if current_user.role == "admin" || current_user.role == "finance" || current_user.role == "ras" || current_user.role == "ra" %>
+	            <li class="nav-item">
+	              <a class="nav-link" href="#"><span class="fa fa-user"></span> <%= current_user.email %></a>
+	            </li>
+	            
+	            <li class="nav-item">
+	              <a class="nav-link" href="/users/sign_out" data-method="delete"><span class="fa fa-sign-out"></span>Log out</a>
+	            </li>
+	          <%# end %>
+	          <% else %>
+	          
+	            <li class="nav-item <%= request.path == "/users/sign_in" ? 'active' : '' %>">
+	              <a class="nav-link" href="/users/sign_in"><span class="fa fa-user"></span>Login</a>
+	            </li>
+
+	            <li class="nav-item <%= request.path == "/users/sign_up" ? 'active' : '' %>">
+	              <a class="nav-link" href="/users/sign_up"><span class="fa fa-sign-in"></span>Sign Up</a>
+	            </li>
+	          <% end %>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+
+
+    <%= yield %>
+  </body>
+</html>
