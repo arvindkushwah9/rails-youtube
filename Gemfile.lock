@@ -344,7 +344,7 @@ GEM
       json (>= 1, < 3)
     pg (1.1.4)
     public_suffix (3.1.1)
-    puma (3.12.1)
+    puma (3.12.4)
     rack (2.0.7)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -484,7 +484,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-instagram
   pg (>= 0.18, < 2.0)
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.7)
   sass-rails (~> 5.0)
   selenium-webdriver
