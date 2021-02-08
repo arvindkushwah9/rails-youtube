@@ -59,7 +59,7 @@ gem 'figaro'
 gem 'activerecord-session_store'
 # gem 'youtube_it'
 gem 'yt'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem "fog"
 gem "koala"
 gem 'omniauth-instagram'
